@@ -157,7 +157,7 @@ describe("UrlMatcher", function () {
       expect(m.exec('/users/123/details/what/thisShouldBeDigits', {})).toBeNull();
     });
 	
-    it("should not validate '/' use the optional regexp with curly brace placeholders (2)", function () {
+    it("should not use optional regexp for '/'", function () {
       var m = new UrlMatcher('/{language:(?:fr|en|de)}');
       expect(m.exec('/', {})).toBeNull();
     });
