@@ -165,7 +165,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
     this.sourcePath = pattern;
     this.sourceSearch = '';
   }
-  
+
   compiled += quoteRegExp(segment) + (config.strict === false ? '\/?' : '') + '$';
   segments.push(segment);
 
