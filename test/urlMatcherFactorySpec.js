@@ -161,7 +161,17 @@ describe("UrlMatcher", function () {
       var m = new UrlMatcher('/{language:(?:fr|en|de)}');
       expect(m.exec('/', {})).toBeNull();
     });
+	
+	it("should work with empty default value", function () {
+      var m = new UrlMatcher('/foo/:str', { params: { str: { value: "" } } });
+      expect(m.exec('/foo/', {})).toEqual({ str: "" });
+    });
 
+	it("should work with empty default value for regex", function () {
+      var m = new UrlMatcher('/foo/{param:(?:foo|bar|)}', { params: { param: { value: "" } } });
+      expect(m.exec('/foo/', {})).toEqual({ param: "" });
+    });
+	
     it("should treat the URL as already decoded and does not decode it further", function () {
       expect(new UrlMatcher('/users/:id').exec('/users/100%25', {})).toEqual({ id: '100%25'});
     });
