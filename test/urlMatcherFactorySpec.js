@@ -156,6 +156,11 @@ describe("UrlMatcher", function () {
       var m = new UrlMatcher('/users/:id/details/{type}/{repeat:[0-9]+}?from&to');
       expect(m.exec('/users/123/details/what/thisShouldBeDigits', {})).toBeNull();
     });
+	
+	it("should not validate '/' use the optional regexp with curly brace placeholders (2)", function () {
+      var m = new UrlMatcher('/{language:(?:fr|en|de)}');
+      expect(m.exec('/', {})).toBeNull();
+    });
 
     it("should treat the URL as already decoded and does not decode it further", function () {
       expect(new UrlMatcher('/users/:id').exec('/users/100%25', {})).toEqual({ id: '100%25'});

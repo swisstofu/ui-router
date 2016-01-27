@@ -922,7 +922,7 @@ function $UrlMatcherFactory() {
     type = arrayMode ? type.$asArray(arrayMode, location === "search") : type;
     if (type.name === "string" && !arrayMode && location === "path" && config.value === undefined)
       config.value = ""; // for 0.2.x; in 0.3.0+ do not automatically default to ""
-    var isOptional = config.value !== undefined;
+    var isOptional = config.value !== undefined && config.value !== "";
     var squash = getSquashPolicy(config, isOptional);
     var replace = getReplace(config, arrayMode, isOptional, squash);
 
